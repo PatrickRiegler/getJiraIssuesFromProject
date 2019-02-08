@@ -22,13 +22,10 @@ exports.handler = (event, context, callback) => {
                   issue.fixVersion = element.fields.fixVersions[0].name
                 issuesResponse.push(issue) 
               })
+              setTimeout(function() { callback(null, JSON.stringify(issuesResponse)); }, 500);
             }
             setTimeout(function() { callback(null, "NO Groups Found"); }, 500);
        }
-       // console.log(issuesResponse)
-       // callback.done(null, JSON.stringify(issuesResponse))
-       //callback(null, JSON.stringify(issuesResponse))
-       xactivate.send(JSON.stringify(issuesResponse))
     };
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/json");
